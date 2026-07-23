@@ -421,6 +421,10 @@
         <img src="../assets/img/cma-app-data-inline-policy.png" alt="Cato Application Control policy with granular app rules: tenant restrictions on Microsoft and OneDrive logins, upload monitoring for online storage apps above a risk threshold, and activity-level block and monitor actions" loading="lazy">
         <figcaption>Where the CloudSOC intent lands: activity-level rules — personal-tenant OneDrive blocked, external Microsoft logins monitored, storage apps gated by risk score — in the same rulebase as the web policy. For the pilot, one or two of these rows in monitor are the Securlet-and-inline comparison, with every hit an event attributed to a named cohort user.</figcaption>
       </figure>
+      <figure class="shot">
+        <img src="../assets/img/cma-acc-client-conn.png" alt="CMA Access Client Connectivity Policy with a pilot-scoped rule above the Allow All default, the cohort enumerated as named users with connection origin set to the Cato Client and Browser Extension" loading="lazy">
+        <figcaption>A pilot-scoped Client Connectivity rule sits above the Allow All default &mdash; the cohort is named user-by-user, so WSS-replacement enforcement lands only on the migration group.</figcaption>
+      </figure>
     </section>
 
     <section id="resources" class="reveal">
