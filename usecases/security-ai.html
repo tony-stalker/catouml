@@ -241,6 +241,26 @@
     </section>
 
 
+    <section id="gallery" class="reveal">
+      <div class="section-kicker">In the console</div>
+      <h2>What this looks like live</h2>
+      <figure class="shot">
+            <img src="../assets/img/genai-anonymised-prompt.png" alt="ChatGPT conversation where the submitted prompt reads 'Redraft this notice for [NAME_1], DOB 01/01/1988, email [EMAIL_1], account [BANK_ACCOUNT_NUMBER_1]' — the name, email address and bank account number replaced by anonymisation tokens before reaching the model, with ChatGPT replying normally.">
+            <figcaption>The "after" evidence, from the user's side of the glass: the name, email address
+            and bank account number were masked in-flight by the Anonymize action, the tokens are what
+            the model received, and the conversation carries on. (The DOB passed through — it isn't in
+            the detector set — which is exactly the kind of finding the deeper end-user pilot exists to
+            tune.)</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/cma-ai-access-policy.png" alt="CMA AI Security User Access Policy: a published rulebase of three rules — engage users on ChatGPT free and personal tiers, redirect high- and critical-risk AI applications, and block Gemini — each with a user-notification template and a detection count, beneath a how-it-works banner explaining that access policies are evaluated before interaction policies.">
+            <figcaption>Worth showing during the walkthrough as the shape of what comes next: a published
+            User Access Policy tiering access by risk — engage, redirect, block — evaluated before the
+            interaction policies this pilot exercised. Building it out belongs to the deeper end-user
+            pilot, not this one.</figcaption>
+          </figure>
+    </section>
+
     <section id="resources" class="reveal">
       <div class="section-kicker">Go deeper</div>
       <h2>Resources</h2>

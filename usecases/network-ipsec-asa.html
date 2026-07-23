@@ -135,8 +135,8 @@
       </div>
 
       <div class="stat-row" style="margin:18px 0">
-        <div class="stat-tile"><div class="stat-value">3</div><div class="stat-label">Active tunnels per HA role (IKEv2) — all Primary tunnels to one PoP, Secondary to another</div></div>
-        <div class="stat-tile"><div class="stat-value">≤30<span class="unit">s</span></div><div class="stat-label">For Cato to determine an IPsec tunnel is down</div></div>
+        <div class="stat-tile"><div class="stat-value">6</div><div class="stat-label">Active tunnels per HA role (IKEv2, maximum) — Primary tunnels to one PoP, Secondary to another</div></div>
+        <div class="stat-tile"><div class="stat-value">60<span class="unit">s</span></div><div class="stat-label">An unresponsive tunnel is torn down (10 s keepalives) and rebuilt on ~90 s attempts</div></div>
         <div class="stat-tile"><div class="stat-value">2</div><div class="stat-label">BGP neighbours per IPsec site — one per tunnel</div></div>
         <div class="stat-tile"><div class="stat-value">100<span class="unit">Mbps</span></div><div class="stat-label">At or above this, use AES-GCM-16 only; AES-CBC is for sites below 100 Mbps</div></div>
       </div>
@@ -242,7 +242,7 @@
         <div class="benefit"><div class="b-icon">🛡️</div><div><h4>Full SASE stack, no new hardware</h4><p>Traffic entering the PoP gets the same inspection as any Socket site — WAN/internet firewall, IPS, anti-malware, CASB and DLP — enforced by the policies you already run.</p></div></div>
         <div class="benefit"><div class="b-icon">🔁</div><div><h4>Dual-PoP high availability</h4><p>Primary and secondary tunnels on separate allocated IPs at separate PoPs. If every primary tunnel drops, routes fail over to the secondary automatically.</p></div></div>
         <div class="benefit"><div class="b-icon">📍</div><div><h4>Deterministic peering</h4><p>Allocated IPs are fixed, known endpoints — easy to raise firewall changes against, easy for a partner's security team to approve.</p></div></div>
-        <div class="benefit"><div class="b-icon">🔀</div><div><h4>Static or BGP routing</h4><p>Start static for a handful of ranges; move to BGP so failover needs no route edits — Cato adjusts BGP metrics to prefer the primary tunnel automatically.</p></div></div>
+        <div class="benefit"><div class="b-icon">🔀</div><div><h4>Static or BGP routing</h4><p>Start static for a handful of ranges; move to BGP so failover needs no route edits — Cato AS-path prepends the secondary neighbour so the primary tunnel is preferred automatically.</p></div></div>
       </div>
     </section>
 
@@ -382,7 +382,7 @@ nat (inside,outside) source static BRANCH-LAN BRANCH-LAN destination static CATO
           each tunnel, then add up to two BGP neighbours — one per tunnel — with peer ASN, Cato ASN
           and peer IP. Defaults: metric 100, hold time 60 s, keepalive 20 s (keep keepalive at ⅓ of
           hold time). Choose what Cato advertises: default route, all routes or summary routes. With
-          both tunnels running BGP, Cato adjusts route metrics to prefer the primary and moves the
+          both tunnels running BGP, Cato AS-path prepends the secondary so the primary is preferred, and moves the
           site to the secondary automatically on failure.</p>
         </li>
         <li>
@@ -398,6 +398,7 @@ nat (inside,outside) source static BRANCH-LAN BRANCH-LAN destination static CATO
         </li>
       </ol>
     </section>
+
 
 
     <section id="resources" class="reveal">

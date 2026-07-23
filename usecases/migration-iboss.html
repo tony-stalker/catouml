@@ -163,7 +163,7 @@
           <tbody>
             <tr><td>SWG / web filtering &amp; malware defence</td><td>Internet firewall — URL categories, anti-malware, IPS; TLS inspection policy</td><td>Category taxonomies differ — map categories and exceptions rule-by-rule, don't assume 1:1</td></tr>
             <tr><td>SafeSearch / YouTube controls</td><td>Content Restrictions — SafeSearch plus YouTube Moderate/Strict</td><td>Cato documents a DoH caveat: browsers using DNS-over-HTTPS bypass Content Restrictions — control DoH via browser policy</td></tr>
-            <tr><td>Cloud connector agents (Windows/macOS/mobile)</td><td>Cato Client — Windows, macOS, Linux, iOS, Android via MSI + MDM/Intune</td><td>Transparent steering to the nearest PoP — no proxy config. ChromeOS is not in Cato's documented Client OS list (see callout)</td></tr>
+            <tr><td>Cloud connector agents (Windows/macOS/mobile)</td><td>Cato Client — Windows, macOS, Linux, iOS, Android via MSI + MDM/Intune</td><td>Transparent steering to the nearest PoP — no proxy config. Chromebook now appears in Cato's Client OS list (Jul 2026) — validate the ChromeOS approach (see callout)</td></tr>
             <tr><td>PAC files / explicit proxy settings</td><td>Transparent steering via Cato Client (roaming) or Socket/IPsec site (on-network)</td><td>PAC/GPO cleanup is part of cutover — but keep the PAC hosted during co-existence as the rollback lever</td></tr>
             <tr><td>GRE/IPsec tunnels from sites</td><td>Cato Socket (X1500/X1700) or IPsec to the nearest Cato PoP</td><td>Sockets add last-mile HA, QoS and full WAN capability — a functional upgrade, not a tunnel swap</td></tr>
             <tr><td>ZTNA / VPN replacement</td><td>Cato SDP — Private Access Policy, App Connector, clientless browser access</td><td>Rides the same Client and backbone as internet security — one agent, one policy plane</td></tr>
@@ -178,10 +178,11 @@
       </div>
       <div class="callout risk">
         <div class="co-title">Qualify before you commit — two documented gaps</div>
-        <p><strong>Chromebook fleets:</strong> iboss covers Chromebooks via a Chrome extension, but
-        ChromeOS does not appear in Cato's documented Client OS list (Windows, macOS, Linux, iOS,
-        Android). For Chromebook-heavy schools this is the first technical qualification question —
-        agree the supported approach with Cato PS/product before committing a migration plan.</p>
+        <p><strong>Chromebook fleets:</strong> iboss covers Chromebooks via a Chrome extension.
+        Cato's client-distribution documentation now lists &ldquo;Android and Chromebook&rdquo; among
+        Client platforms (verified Jul 2026) — an improvement on earlier documentation — but the
+        ChromeOS deployment and management approach for a school fleet is still the first technical
+        qualification question: agree it with Cato PS/product before committing a migration plan.</p>
         <p><strong>Google Workspace identity:</strong> Cato documents SCIM provisioning for
         Entra ID, Okta and OneLogin — Google Workspace is not on that list. Google-identity schools
         need an agreed identity design (SSO and provisioning path) validated in discovery. Do not
@@ -510,6 +511,19 @@
         for whom", user-attributed events are the "how recorded" — evidence on screen rather than
         a vendor report request.</li>
       </ul>
+    </section>
+
+    <section id="gallery" class="reveal">
+      <div class="section-kicker">In the console</div>
+      <h2>What this looks like live</h2>
+      <figure class="shot">
+        <img src="../assets/img/cma-internet-fw-rulebase.png" alt="Cato Management Application Internet Firewall rulebase: thirteen ordered rules with user- and group-scoped sources, category chips, Block, Allow and Prompt actions, and live hit-count bars" loading="lazy">
+        <figcaption>The parity evidence engine: one ordered Internet firewall with group-scoped rules and live hit counts. For this pilot, the graduated Block and Prompt category rules near the bottom are the shape the cohort's iboss tier translates into — every hit an event attributable to a named staff user, which is the safeguarding-reporting continuity story on one screen.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/cma-tls-inspection-policy.png" alt="Cato TLS Inspection policy with bypass rules for sensitive categories, pinned applications and platforms, followed by phased Inspect rules scoped to test networks and a pilot user group" loading="lazy">
+        <figcaption>TLS inspection staged the way the pilot needs it: bypasses first — sensitive categories, pinned apps, device platforms — then Inspect rules scoped to named groups. The pilot-group Inspect rule from step 3 slots into exactly this shape, with the bypass rows seeded from the harvested iboss SSL and PAC lists.</figcaption>
+      </figure>
     </section>
 
     <section id="resources" class="reveal">

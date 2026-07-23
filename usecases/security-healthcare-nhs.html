@@ -516,6 +516,19 @@
     </section>
 
 
+    <section id="gallery" class="reveal">
+      <div class="section-kicker">In the console</div>
+      <h2>What this looks like live</h2>
+      <figure class="shot">
+        <img src="../assets/img/iot-rulebase-cma.png" alt="CMA firewall rulebase with an expanded group of device-attribute rules: allow-with-logging rules matching devices by category, type and manufacturer, a discovery rule, and a block rule with a live hit count" loading="lazy">
+        <figcaption>The shape the IoMT VLAN's rulebase grows into after monitor mode graduates: rules that match what a device <em>is</em> — category, type, manufacturer — logging every hit, with a block rule accumulating evidence. In the hospital pilot the same construct is built for pumps, modalities and monitors, and the block stays subject to the golden rule.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/cma-wan-fw-rulebase.png" alt="CMA WAN Firewall allowlist rulebase scoping sites, user groups and individual users to named hosts and service/port pairs with live hit counts, the first rule granting access to a patient portal host" loading="lazy">
+        <figcaption>The supplier slice's destination (demonstration environment, fictional identities): named-host allow rules with hit counts over an implicit deny — the first row here scopes access to a patient-portal host. The vendor cohort should occupy one or two rows of a rulebase like this, and nothing else should route.</figcaption>
+      </figure>
+    </section>
+
     <section id="resources" class="reveal">
       <div class="section-kicker">Go deeper</div>
       <h2>Resources</h2>

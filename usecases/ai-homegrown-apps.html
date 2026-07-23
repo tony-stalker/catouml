@@ -217,11 +217,11 @@
           <thead><tr><th>Component</th><th>What it does</th></tr></thead>
           <tbody>
             <tr><td><strong>AI Security Guard</strong></td><td>The enforcement point. Evaluates prompts and, when relevant, model responses against your policy; allows, blocks or logs the interaction. Proxy mode supports OpenAI, Azure OpenAI, Anthropic Claude, Google Gemini, Bedrock and custom OpenAI-compatible endpoints.</td></tr>
-            <tr><td><strong>AI Gateway integration</strong></td><td>Forwards traffic from an existing AI gateway to Cato for inspection in pre-call and post-call modes. LiteLLM is supported today; Kong, API-M and Portkey via your Cato representative. Multiple API keys per integration allow rotation without downtime.</td></tr>
-            <tr><td><strong>Guards Interaction Policy</strong></td><td>Granular rules per guard (or all guards): each rule pairs an engine profile with an action — Block, Anonymize or Monitor — and a direction. All rules are evaluated regardless of position; when several match, the stricter action wins.</td></tr>
+            <tr><td><strong>AI Gateway integration</strong></td><td>Since July 2026 this lives inside a single Guard of type AI Gateway: the guard generates the authorisation key and the guardrails snippet you paste into LiteLLM (pre-call and post-call inspection), and each LiteLLM virtual key is mapped as a <strong>Homegrown Agent</strong> for per-agent attribution and policy. LiteLLM is the documented integration; ask your Cato representative about other gateways. Existing integrations migrated automatically with keys unchanged.</td></tr>
+            <tr><td><strong>Guards Interaction Policy</strong></td><td>Granular rules per guard or all guards — and, for gateway guards, scoped to the whole gateway or to individual Homegrown Agents. Each rule pairs an engine profile with an action — Block, Anonymize or Monitor — and a direction. All rules are evaluated regardless of position; when several match, the stricter action wins.</td></tr>
             <tr><td><strong>AI Security Engine</strong></td><td>Profiles group detectors. Entity detectors find specific data (PII, PCI, PHI, credentials, secrets); content detectors judge meaning and intent (prompt injection, obfuscation, harmful content, regulated topics such as financial, employment or medical advice). Confidence levels, string exclusions and custom regex detectors tune precision.</td></tr>
             <tr><td><strong>Playground</strong></td><td>A simulation environment to validate engine profiles before they enforce anything — predefined scenarios (Personal Information, Jailbreak &amp; Prompt Injection, API Keys &amp; Secrets in Code) or custom prompts, with per-profile violation results.</td></tr>
-            <tr><td><strong>Outpost</strong></td><td>A locally deployed inspection service (Kubernetes + Helm) for organisations whose regulations don't allow prompt content to leave their environment — Cato receives only management metadata. Separately licensed; use only when residency demands it.</td></tr>
+            <tr><td><strong>Outpost</strong></td><td>Hosts the guard's inspection locally for organisations whose regulations don't allow prompt content to leave their environment — the guard creation flow offers Outpost hosting for API guards. Deployment detail and licensing are no longer publicly documented: confirm both with your Cato representative, and use it only when residency demands it.</td></tr>
             <tr><td><strong>Interaction Explorer</strong></td><td>The audit trail: every session per guard with interaction counts, detections and timestamps. Drill into a session for the rule violations and the engine's analysis report.</td></tr>
           </tbody>
         </table>
@@ -230,7 +230,7 @@
       <div class="grid-2" style="margin-top:18px">
         <div class="benefit"><div class="b-icon">🛡️</div><div><h4>Runtime protection, not code review</h4><p>Injection, jailbreaks and multi-turn manipulation are blocked in the interaction path — no changes to the model, minimal changes to the app.</p></div></div>
         <div class="benefit"><div class="b-icon">🧬</div><div><h4>An engine tuned to your data</h4><p>Entity and content detectors with confidence levels, exclusions and custom regex — tested safely in the Playground before enforcement.</p></div></div>
-        <div class="benefit"><div class="b-icon">🏠</div><div><h4>Data residency when it's required</h4><p>Host inspection on an Outpost in your own cluster so prompt content never leaves the environment, with policy still managed centrally in CMA.</p></div></div>
+        <div class="benefit"><div class="b-icon">🏠</div><div><h4>Data residency when it's required</h4><p>Host inspection on an Outpost in your own environment so prompt content never leaves it, with policy still managed centrally in CMA.</p></div></div>
         <div class="benefit"><div class="b-icon">🔎</div><div><h4>An audit trail that finally exists</h4><p>Every interaction, verdict and engine analysis report is queryable in the Interaction Explorer — evidence for security, audit and the app team alike.</p></div></div>
       </div>
     </section>
@@ -241,13 +241,15 @@
       <ol class="steps">
         <li>
           <h4>Integrate the interaction path</h4>
-          <p><span class="path">AI Security → Guards</span> <span class="path">AI Security → AI Gateway</span></p>
+          <p><span class="path">AI Security → Guards</span></p>
           <p>Pick the pattern that fits the app: a <strong>Proxy guard</strong> (select the AI service, add its
           API key, click Validate — the app then talks to the guard's endpoint), an <strong>API guard</strong>
-          (the app calls Cato for a verdict and enforces it itself), or an <strong>AI Gateway</strong> integration
-          (create it in CMA, paste the generated snippet into LiteLLM, then create a guard of type AI Gateway
-          whose name exactly matches the LiteLLM virtual key). The guard details page provides endpoints,
-          headers and sample request code to copy into the application.</p>
+          (the app calls Cato for a verdict and enforces it itself), or an <strong>AI Gateway guard</strong>
+          (create a single guard for the gateway — it generates the authorisation key and the guardrails
+          snippet you paste into LiteLLM, then map each LiteLLM virtual key as a Homegrown Agent for
+          per-agent attribution and policy). Pre-July-2026 guidance about one name-matched guard per virtual
+          key no longer applies — existing integrations migrated automatically with keys unchanged. The guard
+          details page provides endpoints, headers and sample request code to copy into the application.</p>
         </li>
         <li>
           <h4>Define engine profiles and detectors</h4>
@@ -258,7 +260,8 @@
         </li>
         <li>
           <h4>Write the Guards Interaction Policy</h4>
-          <p>Enable the policy in the AI Security section, then add rules: which guards, which engine profile,
+          <p>Enable the policy in the AI Security section, then add rules: which guards (or, for a gateway
+          guard, the whole gateway or individual Homegrown Agents), which engine profile,
           which direction, and the action — <strong>Block</strong>, <strong>Anonymize</strong> or
           <strong>Monitor</strong>. Start broad in Monitor, then tighten; remember every rule is evaluated
           and the stricter action always prevails.</p>
@@ -272,11 +275,12 @@
         </li>
         <li>
           <h4>Optional: deploy an Outpost for residency</h4>
-          <p><span class="path">AI Security → Outposts</span></p>
-          <p>If prompt content must not leave the environment, the wizard generates everything for a
-          Kubernetes deployment: namespace, service secret, registry access, operator Helm charts and the
-          Outpost manifest (GPU node selectors, resources, release channel). Only monitoring metadata
-          returns to Cato.</p>
+          <p><span class="path">AI Security → Guards</span></p>
+          <p>If prompt content must not leave the environment, an Outpost hosts the guard's inspection
+          locally — the option is offered when creating an API guard. The deployment detail that was once
+          public (Kubernetes manifests, Helm charts) was not locatable in the KB as of 23 July 2026, and
+          Outpost licensing is not publicly documented either — scope the deployment and confirm licensing
+          with your Cato representative before it goes into any design.</p>
         </li>
         <li>
           <h4>Monitor guards and interactions</h4>
@@ -290,9 +294,11 @@
         <div class="co-title">Licensing note</div>
         <p><strong>AI Security for End Users</strong> and <strong>AI Security for Apps</strong> are separate
         per-user licences — securing employee GenAI use does not automatically cover the AI the customer
-        builds, and vice versa. Outposts are licensed separately again.</p>
+        builds, and vice versa. Outpost licensing is not publicly documented — confirm it with your Cato
+        representative.</p>
       </div>
     </section>
+
 
 
     <section id="resources" class="reveal">
@@ -306,11 +312,9 @@
             <li><a href="https://knowledge.catonetworks.com/docs/working-with-ai-security-guards" target="_blank" rel="noopener">Working with AI Security Guards</a></li>
             <li><a href="https://knowledge.catonetworks.com/docs/working-with-the-guards-interaction-policy" target="_blank" rel="noopener">Working with the Guards Interaction Policy</a></li>
             <li><a href="https://knowledge.catonetworks.com/docs/configuring-and-monitoring-a-guard" target="_blank" rel="noopener">Configuring and Monitoring a Guard</a></li>
-            <li><a href="https://knowledge.catonetworks.com/docs/integrating-your-ai-gateway-with-cato" target="_blank" rel="noopener">Integrating Your AI Gateway with Cato</a></li>
-            <li><a href="https://knowledge.catonetworks.com/docs/ai-security-engine" target="_blank" rel="noopener">AI Security Engine — profiles &amp; detectors</a></li>
-            <li><a href="https://knowledge.catonetworks.com/docs/testing-engine-profiles-in-the-playground" target="_blank" rel="noopener">Testing Engine Profiles in the Playground</a></li>
-            <li><a href="https://knowledge.catonetworks.com/docs/configuring-ai-security-outposts" target="_blank" rel="noopener">Configuring AI Security Outposts</a></li>
-            <li><a href="https://knowledge.catonetworks.com/docs/monitoring-ai-sessions-for-apps-with-the-interaction-explorer" target="_blank" rel="noopener">Monitoring AI Sessions with the Interaction Explorer</a></li>
+            <li><a href="https://knowledge.catonetworks.com/docs/integrating-your-ai-gateway-with-cato-1" target="_blank" rel="noopener">Integrating Your AI Gateway with Cato</a></li>
+            <li><a href="https://knowledge.catonetworks.com/docs/what-changed-with-ai-gateways-july-2026" target="_blank" rel="noopener">What Changed with AI Gateways — July 2026</a></li>
+            <li><a href="https://knowledge.catonetworks.com/docs/getting-started-with-ai-security" target="_blank" rel="noopener">Getting Started with AI Security</a></li>
           </ul>
         </div>
         <div class="card">

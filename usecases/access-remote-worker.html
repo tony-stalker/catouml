@@ -308,7 +308,8 @@
         <strong>Connection Details</strong> view decomposes his path into scored nodes —
         <strong>client device, Wi-Fi, LAN gateway, last mile (tunnel) and application</strong> —
         each independently rated against published thresholds: CPU Good below 70% utilisation,
-        Wi-Fi Good at −67 dBm or stronger, LAN gateway and tunnel Good below 1% loss and 10 ms.
+        Wi-Fi Good at −67 dBm or stronger, LAN gateway Good below 1% loss and 10 ms, and the
+        last-mile tunnel Good below 1% loss and 20 ms.
         The first non-green node names the fault domain; a tunnel-age widget adds context without
         skewing the score.
       </p>
@@ -321,6 +322,23 @@
       </div>
     </section>
 
+
+    <section id="gallery" class="reveal">
+      <div class="section-kicker">In the console</div>
+      <h2>What this looks like live</h2>
+      <figure class="shot">
+        <img src="../assets/img/em-home-users.png" alt="CMA Experience Monitoring landing page on the Remote Users tab: account experience score graph and story feed above a table of four fictional remote users, each with an experience chip, app count, connected PoP, flows, usage and average TTFB between 61 and 298 ms" loading="lazy">
+        <figcaption>Criteria one and four on one screen (demonstration environment, fictional identities): the cohort baseline — per-user score, PoP and average TTFB — and the "is it just me?" answer. Sort worst-first, filter to the complaint's app, and the fleet-wide verdict is read in seconds; note the elapsed time against the criterion.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/em-connection-details.png" alt="CMA user drill-down Connection Details: a node chain from device through Wi-Fi, LAN gateway and last mile to the application, with the Wi-Fi node scored Fair at -67.43 dBm average signal strength and every other node Good" loading="lazy">
+        <figcaption>Criterion two's verdict — and the "before" half of criterion three (demonstration environment). One user's path decomposed into five independently scored nodes: Wi-Fi Fair at −67.43 dBm against the −67 dBm threshold, device, LAN gateway, last mile and application all Good. The fault domain is the user's own Wi-Fi — decided by numbers, closed with the "after" capture once the band is fixed.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/em-command-line.png" alt="CMA Path Analysis Command Line tab: an MTR-style per-hop table from a user to the London PoP showing 24.3 percent loss and 269 ms average latency at the ISP's first public hop, intermediate hops largely clean, and the Cato PoP at 0 percent loss and 6 ms, with 1010 probes sent per hop" loading="lazy">
+        <figcaption>The escalation pack's closing page (demonstration environment): per-hop loss with geolocation — 24.3% loss at the ISP's first public hop against a Cato PoP at 0% and 6 ms, over 1,010 probes per hop. Captured from the socket-side path analysis (Socket v25+): for a purely remote user the tunnel loss/latency in Connection Details carries the escalation instead, so scope this leg to a hybrid cohort member or the pilot site.</figcaption>
+      </figure>
+    </section>
 
     <section id="resources" class="reveal">
       <div class="section-kicker">Go deeper</div>

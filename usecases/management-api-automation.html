@@ -212,6 +212,15 @@ terraform apply  <span class="cmt"># sites appear in CMA in minutes</span></pre>
     </section>
 
 
+    <section id="gallery" class="reveal">
+      <div class="section-kicker">In the console</div>
+      <h2>What this looks like live</h2>
+      <figure class="shot">
+        <img src="../assets/img/cma-wan-fw-rulebase.png" alt="CMA WAN Firewall rulebase showing twelve ordered allowlist rules with sources, destinations, services and live hit counts">
+        <figcaption>The rulebase your pipeline writes into — Security → WAN Firewall, published revision. During the pilot the <code>pov-tf-</code> rule sits here alongside console-authored rules, identical in effect and hit-count telemetry; after <code>terraform destroy</code> it is gone, and only the Audit Trail remembers it.</figcaption>
+      </figure>
+    </section>
+
     <section id="resources" class="reveal">
       <div class="section-kicker">Go deeper</div>
       <h2>Resources</h2>

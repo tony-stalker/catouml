@@ -406,6 +406,23 @@
       </div>
     </section>
 
+    <section id="gallery" class="reveal">
+      <div class="section-kicker">In the console</div>
+      <h2>What this looks like live</h2>
+      <figure class="shot">
+        <img src="../assets/img/cma-internet-fw-rulebase.png" alt="Cato Management Application Internet Firewall rulebase: thirteen ordered rules with user- and device-scoped sources, category chips, Block, Allow and Prompt actions, and live hit-count bars" loading="lazy">
+        <figcaption>The rationalised slice, live: an ordered Internet Firewall rulebase where Block for Risky Categories (199.1K hits) and Prompt (227K hits — the coach page reborn) carry their own hit evidence. For a cohort that arrived from order-dependent CPL layers, the hit bars are Reporter's role recast — every rule earns its keep on events, not archaeology.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/cma-tls-inspection-policy.png" alt="Cato TLS Inspection policy with bypass rules for sensitive categories, pinned applications and platforms, followed by phased Inspect rules scoped to test networks and a pilot user group" loading="lazy">
+        <figcaption>The SSL Visibility appliance recast as policy: bypasses first — sensitive categories, pinned apps, device platforms — then phased Inspect rules scoped to named groups. The cohort-scoped Inspect rule from step 3 slots in exactly here, and the bypass rows are where the verified ProxySG/SSLV exemptions land.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/cma-app-data-inline-policy.png" alt="Cato Application Control policy with granular app rules: tenant restrictions on Microsoft and OneDrive logins, upload monitoring for online storage apps above a risk threshold, and activity-level block and monitor actions" loading="lazy">
+        <figcaption>Where the CloudSOC intent lands: activity-level rules — personal-tenant OneDrive blocked, external Microsoft logins monitored, storage apps gated by risk score — in the same rulebase as the web policy. For the pilot, one or two of these rows in monitor are the Securlet-and-inline comparison, with every hit an event attributed to a named cohort user.</figcaption>
+      </figure>
+    </section>
+
     <section id="resources" class="reveal">
       <div class="section-kicker">Go deeper</div>
       <h2>Resources</h2>
