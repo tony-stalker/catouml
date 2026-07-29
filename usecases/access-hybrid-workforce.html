@@ -226,6 +226,10 @@
       <div class="section-kicker">In the console</div>
       <h2>What this looks like live</h2>
       <figure class="shot">
+            <img src="../assets/img/cma-alwayson-pilot-rule.png" alt="CMA Access Always-On Policy with an enabled Pilot Users rule above the default on-demand system rule, the edit panel open showing the rule scoped to the Pilot Users group with connection mode Always-On and the Bypass Mode dropdown offering user-choice or admin-passcode disconnect" loading="lazy">
+            <figcaption>The always-on construct exactly as the step describes (lab tenant, fictional identities): one rule scoping the pilot group to Always-On, sitting above the default on-demand system rule, with Bypass Mode set in the same panel — governed bypass configured in the open, not hidden.</figcaption>
+          </figure>
+      <figure class="shot">
         <img src="../assets/img/cma-wan-fw-rulebase.png" alt="CMA WAN Firewall rulebase showing twelve allowlist rules whose sources mix sites, user groups and individual SDP users, with direction, service and port pairs, and live hit counts over an implicit deny" loading="lazy">
         <figcaption>The artefact behind "one policy, both chairs": a single WAN Firewall rulebase whose sources mix sites and SDP users (demonstration environment, fictional identities) — the rule your pilot user hits is the same row whether the event's origin says office or remote. There is no second rulebase to drift.</figcaption>
       </figure>

@@ -287,6 +287,22 @@
       <div class="section-kicker">In the console</div>
       <h2>What this looks like live</h2>
       <figure class="shot">
+            <img src="../assets/img/cma-browser-access-policy.png" alt="CMA Access → Browser Access Control on the Access Policy tab: two rules, each entitling named users and groups to a list of published remote-access applications shown as removable chips" loading="lazy">
+            <figcaption>The portal's configuration side (demonstration environment, fictional identities): access-policy rules pairing user groups with the named applications they may open — each chip one published app, each row one entitlement decision. Your pilot needs one row scoping <em>BYOD-Pilot</em> to the named list.</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/cma-events-ext-upload-filter.png" alt="CMA Monitor → Events filtered to Connection Origin Browser Extension, Action Block and Sub-Type Apps Security, the histogram showing 24 matching block events clustered in one evening" loading="lazy">
+            <figcaption>The three-filter view that isolates the proof (lab tenant, fictional identities): connection origin <strong>Browser Extension</strong>, action <strong>Block</strong>, sub-type <strong>Apps Security</strong> — every event in the result set is an extension-session upload the Data Control rule refused.</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/cma-events-ext-upload-detail.png" alt="Expanded Apps Security block event fields: DLP profiles GLBA and credit-card numbers matched on a file named Document with CC Information uploading to Google Drive, rule Block Google Drive PII, severity high, threat verdict matched, TLS inspection on, with a View forensics evidence link" loading="lazy">
+            <figcaption>One event opened up (identifying values redacted): file name, matched DLP profiles, the rule that fired and a forensics link — the block lands as an Apps Security event carrying exactly the fields the success criterion asks to see.</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/browser-ext-connected.png" alt="A personal Chrome profile with the Cato Browser Extension popup open showing Connected, over the proxy-authentication success page at the tenant's proxy.catonetworks.com address" loading="lazy">
+            <figcaption>Marcus's whole enrolment, one screenshot (lab tenant, tenant name redacted): extension installed in a personal Chrome profile, sign-in complete against the tenant's forward-proxy address, popup showing <strong>Connected</strong> — browser traffic now rides the PoP with no client and no admin rights.</figcaption>
+          </figure>
+      <figure class="shot">
         <img src="../assets/img/cma-internet-fw-rulebase.png" alt="CMA Internet Firewall rulebase with hit counts, including a rule pinning named contractor users to the browser access portal and an RBI default rule routing uncategorised destinations through isolation" loading="lazy">
         <figcaption>The portal cohort's policy shape (demonstration environment, fictional identities): rule 2 pins named contractor users to the browser access portal as their only way in, and the RBI default rule shows isolation as a rulebase action — the constructs your pilot's view-only criterion lands in.</figcaption>
       </figure>

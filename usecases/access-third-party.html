@@ -237,6 +237,18 @@
       <div class="section-kicker">In the console</div>
       <h2>What this looks like live</h2>
       <figure class="shot">
+            <img src="../assets/img/app-portal-enduser.png" alt="The Applications Portal as a signed-in supplier user sees it: nine published applications as tiles — Windows and Ubuntu hosts, an intranet site and a Guacamole jump target — with search and sort, and nothing else reachable" loading="lazy">
+            <figcaption>What the unmanaged-laptop supplier actually gets (lab tenant, fictional identities): a branded portal of exactly the applications published to their group — web apps and RDP/SSH hosts as tiles in a browser. No client, no network membership, and nothing beyond these tiles to discover.</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/cma-user-scim-disabled.png" alt="CMA Access → Users detail page for a SCIM-provisioned user showing User Status Disabled, origin SCIM with the IdP directory named as source, and the greyed-out Save confirming the record is directory-managed" loading="lazy">
+            <figcaption>The Cato end of the leaver drill (lab tenant, fictional identities): the contractor's user record flipped to <strong>Disabled</strong> by the next SCIM sync after the IdP change — origin SCIM, directory-managed, nothing edited by hand in Cato.</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/portal-signin-refused.png" alt="Microsoft sign-in dialogue for the disabled contractor account showing the message that the account has been locked and to contact a support person to unlock it" loading="lazy">
+            <figcaption>The user-facing half of the same proof: the leaver's next portal sign-in refused at the IdP. Screenshot both, with the IdP-change timestamp, and the measured window is documented at both ends.</figcaption>
+          </figure>
+      <figure class="shot">
         <img src="../assets/img/cma-wan-fw-rulebase.png" alt="CMA WAN Firewall rulebase of twelve allowlist rules scoping sites, user groups and individual SDP users to named hosts, applications and service/port pairs, with live hit counts over an implicit deny" loading="lazy">
         <figcaption>The least-privilege construct your pilot builds (demonstration environment, fictional identities): user-scoped allow rules to named hosts and service/port pairs, hit counts accumulating as evidence, and everything unlisted falling to the implicit block. Your supplier cohort should occupy two or three rows of a rulebase like this — no more.</figcaption>
       </figure>
