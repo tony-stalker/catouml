@@ -361,6 +361,14 @@
             <figcaption>The published User Interaction Policy rulebase: each rule pairs an IdP source group and app scope with an engine profile and an action &mdash; here Anonymize &amp; Block &mdash; with violation counts accruing per rule. (The notification template is set inside the rule editor.)</figcaption>
           </figure>
       <figure class="shot">
+            <img src="../assets/img/cma-genai-dlp-events-grid.png" alt="CMA events grid filtered to the AI DLP monitor rules: nine ChatGPT upload events for one pilot user, each row naming the file, the matching rule and DLP profile across PII, financial data, access keys and legal data, every action Allow" loading="lazy">
+            <figcaption>The match report the data owners actually review (lab tenant, fictional identities and synthetic test files): nine uploads to ChatGPT, each attributed to a user, a file, a rule and a profile &mdash; eight matching the four recommended rules, one the tenant&#39;s pre-existing GenAI monitor rule &mdash; and every action <strong>Allow</strong>. Monitor mode is the whole point in week one; the grid tells you which data classes travel to AI apps before anyone argues about blocking them.</figcaption>
+          </figure>
+      <figure class="shot">
+            <img src="../assets/img/cma-genai-dlp-forensics.png" alt="Two CMA panels: a confirmation dialog warning that evidence may contain sensitive information and that access is logged, and a Forensics panel showing match 2 of 3 with an AWS access key highlighted in the file snippet" loading="lazy">
+            <figcaption>Opening the forensics on an access-key match: the viewer must first confirm the access is logged and monitored (left), and the snippet then shows the matched value in context with a 2-of-3 match counter (right). The key shown is AWS&#39;s own documented example value in a synthetic test file.</figcaption>
+          </figure>
+      <figure class="shot">
             <img src="../assets/img/cma-ai-access-policy.png" alt="CMA AI Security User Access Policy rulebase with three published rules — Engage User on free and personal ChatGPT tiers, Redirect for high- and critical-risk AI applications, and Block for a named service — each carrying a user notification template and a detection count" loading="lazy">
             <figcaption>The engage/notify rung as a published rulebase: personal chatbot tiers engage the user, high- and critical-risk apps redirect to sanctioned alternatives, one named service blocks — each rule with its notification template and a detection count showing the education actually landing. This is the week-3 evidence that behaviour shifted before enforcement arrived.</figcaption>
           </figure>
