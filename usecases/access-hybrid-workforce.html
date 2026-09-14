@@ -238,6 +238,16 @@
             <figcaption>The always-on construct exactly as the step describes (lab tenant, fictional identities): one rule scoping the pilot group to Always-On, sitting above the default on-demand system rule, with Bypass Mode set in the same panel — governed bypass configured in the open, not hidden.</figcaption>
           </figure>
       <figure class="shot">
+            <img src="../assets/img/cma-events-wanfw-two-origins.png" alt="CMA Events page filtered to Sub-Type WAN Firewall and the rule Demo Hub to Lab Chat Airlines, showing 744 events over the last two days. The table interleaves SDP User rows attributed to remote user Natalie Blake with Site rows from NewYork HQ, all hitting the same rule with a Monitor action within the same minute; the Site rows carry the site name rather than a user display name." loading="lazy">
+            <figcaption><strong>Monitor → Events</strong> — one WAN Firewall rule (<em>Demo Hub to Lab
+            Chat Airlines</em>), 744 hits in two days, with <strong>SDP User</strong> rows for a named
+            remote user interleaved with <strong>Site</strong> rows from the office origin seconds
+            apart. Point at the Rule column: identical on every row, so there is no remote variant to
+            drift. One honest caveat — the office rows attribute to the site rather than the user's
+            name, so for the strict two-chair proof also filter on the user and pair their office-mode
+            event with this view.</figcaption>
+          </figure>
+      <figure class="shot">
         <img src="../assets/img/cma-wan-fw-rulebase.png" alt="CMA WAN Firewall rulebase showing twelve allowlist rules whose sources mix sites, user groups and individual SDP users, with direction, service and port pairs, and live hit counts over an implicit deny" loading="lazy">
         <figcaption>The artefact behind "one policy, both chairs": a single WAN Firewall rulebase whose sources mix sites and SDP users (demonstration environment, fictional identities) — the rule your pilot user hits is the same row whether the event's origin says office or remote. There is no second rulebase to drift.</figcaption>
       </figure>
