@@ -56,6 +56,16 @@ window.UC_CATALOG = [
   },
 
   {
+    id: "access-app-connectors",
+    file: "usecases/access-app-connectors.html",
+    category: "Access",
+    title: "Private Access with App Connectors",
+    summary: "Publish private applications through outbound-only App Connectors — no inbound rules, no route advertisement, no readdressing — with an identity- and posture-driven Private Access Policy brokered at the PoP; the fast path for M&A, overlapping IP estates and quick ZTNA wins.",
+    tags: ["ZTNA", "App Connectors", "Private Access", "M&A", "Cloud"],
+    status: "new",
+    deck: null
+  },
+  {
     id: "access-identity-design",
     file: "usecases/access-identity-design.html",
     category: "Access",
